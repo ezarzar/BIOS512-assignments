@@ -3,21 +3,37 @@ title: "BIOS 512 Data Visualization- Women In STEM"
 author: "Liz Zarzar"
 date: "11/20/2019"
 output:
-  html_document
+  html_document:
+    keep_md: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 
-```
 
 ## Data: College Majors by Gender
 
 For this data visualization, a dataset containing information about the gender distribution of different college majors and major areas was obtained from the FiveThirtyEight Github. The dataset (women-stem.csv) contains a list of college majors with their more generalized associated major categories (Engineering, Physical Sciences, Computers & Mathematics, Health, Biology & Life Science), which are from Carnevale et al, "What's It Worth?: The Economic Value of College Majors." Georgetown University Center on Education and the Workforce, 2011. http://cew.georgetown.edu/whatsitworth. The dataset also contains information from the American Community Survey 2010-2012 Public Use Microdata Series regarding the total number of men and women in each major during this time frame, as well as a column indicating the proportion of women in each major (ShareWomen). A preview of this dataset is shown below:
 
-```{r}
+
+```r
 df = read.csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/women-stem.csv')
 head(df)
+```
+
+```
+##   Rank Major_code                                     Major Major_category
+## 1    1       2419                     PETROLEUM ENGINEERING    Engineering
+## 2    2       2416            MINING AND MINERAL ENGINEERING    Engineering
+## 3    3       2415                 METALLURGICAL ENGINEERING    Engineering
+## 4    4       2417 NAVAL ARCHITECTURE AND MARINE ENGINEERING    Engineering
+## 5    5       2418                       NUCLEAR ENGINEERING    Engineering
+## 6    6       2405                      CHEMICAL ENGINEERING    Engineering
+##   Total   Men Women ShareWomen Median
+## 1  2339  2057   282  0.1205643 110000
+## 2   756   679    77  0.1018519  75000
+## 3   856   725   131  0.1530374  73000
+## 4  1258  1123   135  0.1073132  70000
+## 5  2573  2200   373  0.1449670  65000
+## 6 32260 21239 11021  0.3416305  65000
 ```
 
 
@@ -25,10 +41,56 @@ head(df)
 
 To further analyze the gender distribution of different collge major categories, it was necessary to create a column containing the proportion of men in each major (ShareMen). In addition, the dataset was grouped by major category and the average proportion of men and women in each major category was calculated, creating the Total_Men and Total_Women columns, labled as "Female Students" and "Male Students". The final dataset used for the visualization contained only the Major_Category, Total_Women, and Total_Men columns, as shown below. 
 
-```{r}
-library(htmlwidgets)
+
+```r
 library('tidyverse')
+```
+
+```
+## ── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+```
+
+```
+## ✔ ggplot2 3.2.0     ✔ purrr   0.3.2
+## ✔ tibble  2.1.3     ✔ dplyr   0.8.1
+## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0
+```
+
+```
+## ── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+```
+
+```r
 library('plotly')
+```
+
+```
+## 
+## Attaching package: 'plotly'
+```
+
+```
+## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot
+```
+
+```
+## The following object is masked from 'package:stats':
+## 
+##     filter
+```
+
+```
+## The following object is masked from 'package:graphics':
+## 
+##     layout
+```
+
+```r
 library(ggthemes)
 library(forcats)
 
@@ -48,7 +110,8 @@ names(df)[3] <- "Male Students"
 
 As shown below, women tend to dominate the health field while the the fields of engineering and computer science & mathematics are largely dominanted by male students.
 
-```{r}
+
+```r
 #PLOT OF MAJOR CATEGORY BY GENDER (AVERAGE PROPORTION OF MEN vs. WOMEN)
 knitr::opts_chunk$set(fig.width=10, fig.height=8) 
 p2 = ggplot(data = df %>% gather(Variable, value, -Major_category), 
@@ -63,15 +126,17 @@ axis.title.y = element_text(face="bold"))
 p2
 ```
 
+![](FinalProject_STEM_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
 
 ## Data Cleaning (Visualization #2)
 
 Each of these major categories consists of many majors. To further examine which specific college majors are most popular amongst female students and male students, I subsetted the data to only contain the top 10 college majors with the highest proportion of female students as well as the top 10 college majors with the highest proportion of male students. These datasets (named mostwomen and mostmen) as well as their respective barplots showing the gender distributions for these majors are shown below. 
 
-```{r}
 
+```r
 #COLLEGE MAJORS WITH HIGHEST PROPORTION OF WOMEN (TOP WOMEN'S COLLEGE MAJORS)
-knitr::opts_chunk$set(fig.width=13, fig.height=8) 
+knitr::opts_chunk$set(fig.width=12, fig.height=8) 
 df = read.csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/women-stem.csv')
 #Create ShareMen Column (Proportion of Men by Major)
 
@@ -84,7 +149,34 @@ mostwomen = mostwomen[ -c(1,2,4,5,6,7,9)]
 names(mostwomen)[2] <- "Female Students"
 names(mostwomen)[3] <- "Male Students"
 print(mostwomen)
+```
 
+```
+##                                                         Major
+## 1                                                     NURSING
+## 2  NUCLEAR, INDUSTRIAL RADIOLOGY, AND BIOLOGICAL TECHNOLOGIES
+## 3                            MEDICAL TECHNOLOGIES TECHNICIANS
+## 4                                  MEDICAL ASSISTING SERVICES
+## 5                    MISCELLANEOUS HEALTH MEDICAL PROFESSIONS
+## 6                  HEALTH AND MEDICAL ADMINISTRATIVE SERVICES
+## 7                                          NUTRITION SCIENCES
+## 8                                 COMMUNITY AND PUBLIC HEALTH
+## 9                         GENERAL MEDICAL AND HEALTH SERVICES
+## 10              COMMUNICATION DISORDERS SCIENCES AND SERVICES
+##    Female Students Male Students
+## 1         89.60190     10.398101
+## 2         75.04726     24.952741
+## 3         75.39274     24.607264
+## 4         92.78072      7.219275
+## 5         88.12939     11.870611
+## 6         76.44265     23.557347
+## 7         86.44561     13.554392
+## 8         79.20953     20.790474
+## 9         77.45766     22.542338
+## 10        96.79981      3.200188
+```
+
+```r
 #COLLEGE MAJORS WITH HIGHEST PROPORTION OF MEN (TOP MEN'S COLLEGE MAJORS)
 mostmen = top_n(df, n=10,ShareMen)
 mostmen = mostmen[ -c(1,2,4,5,6,7,9)]
@@ -93,8 +185,33 @@ names(mostmen)[2] <- "Female Students"
 names(mostmen)[3] <- "Male Students"
 print(mostmen)
 ```
-```{r}
 
+```
+##                                          Major Female Students
+## 1                        PETROLEUM ENGINEERING       12.056434
+## 2               MINING AND MINERAL ENGINEERING       10.185185
+## 3                    METALLURGICAL ENGINEERING       15.303738
+## 4    NAVAL ARCHITECTURE AND MARINE ENGINEERING       10.731320
+## 5                          NUCLEAR ENGINEERING       14.496697
+## 6                       MECHANICAL ENGINEERING       11.955890
+## 7                        AEROSPACE ENGINEERING       13.979280
+## 8        ENGINEERING AND INDUSTRIAL MANAGEMENT       17.412251
+## 9             MATHEMATICS AND COMPUTER SCIENCE       17.898194
+## 10 MECHANICAL ENGINEERING RELATED TECHNOLOGIES        7.745303
+##    Male Students
+## 1       87.94357
+## 2       89.81481
+## 3       84.69626
+## 4       89.26868
+## 5       85.50330
+## 6       88.04411
+## 7       86.02072
+## 8       82.58775
+## 9       82.10181
+## 10      92.25470
+```
+
+```r
 #TOP WOMEN'S COLLEGE MAJORS PLOT
 p3 = p2 = ggplot(data = mostwomen %>% gather(Variable, value, -Major), 
        aes(x = reorder(Major, value), y = value, fill = Variable, some_dummy_mapping = value[Variable])) + geom_bar(stat = 'identity', position = 'stack')
@@ -105,9 +222,13 @@ p3 = p3 + xlab("Major Category") + ylab("Percent") + ggtitle("TOP COLLEGE MAJORS
 
 p3 = p3 + theme(plot.title = element_text(size=14, face="bold.italic"), axis.title.x = element_text(face="bold"),
 axis.title.y = element_text(face="bold")) 
-p3 = ggplotly(p3, tooltip = c("value")) %>% as_widget() 
+#p3 = ggplotly(p3, tooltip = c("value")) %>% as_widget() 
 p3
+```
 
+![](FinalProject_STEM_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+```r
 #TOP MEN'S COLLEGE MAJORS PLOT
 
 p4 = ggplot(data = mostmen %>% gather(Variable, value, -Major), 
@@ -120,10 +241,11 @@ p4 = p4 + xlab("Major Category") + ylab("Percent") + ggtitle("TOP COLLEGE MAJORS
 
 p4 = p4 + theme(plot.title = element_text(size=14, face="bold.italic"), axis.title.x = element_text(face="bold"),
 axis.title.y = element_text(face="bold"))
-p4 = ggplotly(p4, tooltip = c("value")) %>% as_widget()
+#p4 = ggplotly(p4, tooltip = c("value")) %>% as_widget()
 p4
-
 ```
+
+![](FinalProject_STEM_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
 
 ## Women in STEM: Conclusion 
 
