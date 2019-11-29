@@ -3,12 +3,11 @@ title: "BIOS 512 Data Visualization- Women In STEM"
 author: "Liz Zarzar"
 date: "11/20/2019"
 output:
-  rmarkdown::github_document
+  github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 ```
 
 ## Data: College Majors by Gender
@@ -26,7 +25,6 @@ head(df)
 To further analyze the gender distribution of different collge major categories, it was necessary to create a column containing the proportion of men in each major (ShareMen). In addition, the dataset was grouped by major category and the average proportion of men and women in each major category was calculated, creating the Total_Men and Total_Women columns, labled as "Female Students" and "Male Students". The final dataset used for the visualization contained only the Major_Category, Total_Women, and Total_Men columns, as shown below. 
 
 ```{r}
-library(htmlwidgets)
 library('tidyverse')
 library('plotly')
 library(ggthemes)
@@ -71,7 +69,7 @@ Each of these major categories consists of many majors. To further examine which
 ```{r}
 
 #COLLEGE MAJORS WITH HIGHEST PROPORTION OF WOMEN (TOP WOMEN'S COLLEGE MAJORS)
-knitr::opts_chunk$set(fig.width=13, fig.height=8) 
+knitr::opts_chunk$set(fig.width=12, fig.height=8) 
 df = read.csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/women-stem.csv')
 #Create ShareMen Column (Proportion of Men by Major)
 
@@ -105,7 +103,7 @@ p3 = p3 + xlab("Major Category") + ylab("Percent") + ggtitle("TOP COLLEGE MAJORS
 
 p3 = p3 + theme(plot.title = element_text(size=14, face="bold.italic"), axis.title.x = element_text(face="bold"),
 axis.title.y = element_text(face="bold")) 
-p3 = ggplotly(p3, tooltip = c("value")) %>% as_widget() 
+#p3 = ggplotly(p3, tooltip = c("value")) %>% as_widget() 
 p3
 
 #TOP MEN'S COLLEGE MAJORS PLOT
@@ -120,7 +118,7 @@ p4 = p4 + xlab("Major Category") + ylab("Percent") + ggtitle("TOP COLLEGE MAJORS
 
 p4 = p4 + theme(plot.title = element_text(size=14, face="bold.italic"), axis.title.x = element_text(face="bold"),
 axis.title.y = element_text(face="bold"))
-p4 = ggplotly(p4, tooltip = c("value")) %>% as_widget()
+#p4 = ggplotly(p4, tooltip = c("value")) %>% as_widget()
 p4
 
 ```
