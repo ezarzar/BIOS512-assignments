@@ -6,8 +6,7 @@ ARG NB_UID
 RUN pip3 install jupyterlab
 
 USER root
-COPY in-class-exercises ${HOME}/in-class-exercises
-COPY assignments ${HOME}/assignments
+COPY BIOS512-assignments ${ezarzar}/BIOS512-assignments
 RUN chown -R ${NB_USER} ${HOME}
 
 USER ${NB_USER}
