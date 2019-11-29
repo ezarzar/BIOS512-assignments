@@ -1,3 +1,8 @@
+BIOS 512 Data Visualization- Women In STEM
+================
+Liz Zarzar
+11/20/2019
+
 Data: College Majors by Gender
 ------------------------------
 
@@ -107,7 +112,9 @@ Each of these major categories consists of many majors. To further examine which
     ## 9       82.10181
     ## 10      92.25470
 
-![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-5-1.png)![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-5-2.png)
+![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 Women in STEM: Conclusion
 -------------------------
