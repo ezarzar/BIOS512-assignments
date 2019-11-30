@@ -1,12 +1,20 @@
-BIOS 512 Data Visualization- Women In STEM
-================
-Liz Zarzar
-11/20/2019
-
 Data: College Majors by Gender
 ------------------------------
 
-For this data visualization, a dataset containing information about the gender distribution of different college majors and major areas was obtained from the FiveThirtyEight Github. The dataset (women-stem.csv) contains a list of college majors with their more generalized associated major categories (Engineering, Physical Sciences, Computers & Mathematics, Health, Biology & Life Science), which are from Carnevale et al, "What's It Worth?: The Economic Value of College Majors." Georgetown University Center on Education and the Workforce, 2011. <http://cew.georgetown.edu/whatsitworth>. The dataset also contains information from the American Community Survey 2010-2012 Public Use Microdata Series regarding the total number of men and women in each major during this time frame, as well as a column indicating the proportion of women in each major (ShareWomen). A preview of this dataset is shown below:
+For this data visualization, a dataset containing information about the
+gender distribution of different college majors and major areas was
+obtained from the FiveThirtyEight Github. The dataset (women-stem.csv)
+contains a list of college majors with their more generalized associated
+major categories (Engineering, Physical Sciences, Computers &
+Mathematics, Health, Biology & Life Science), which are from Carnevale
+et al, "What's It Worth?: The Economic Value of College Majors."
+Georgetown University Center on Education and the Workforce, 2011.
+<http://cew.georgetown.edu/whatsitworth>. The dataset also contains
+information from the American Community Survey 2010-2012 Public Use
+Microdata Series regarding the total number of men and women in each
+major during this time frame, as well as a column indicating the
+proportion of women in each major (ShareWomen). A preview of this
+dataset is shown below:
 
     ##   Rank Major_code                                     Major Major_category
     ## 1    1       2419                     PETROLEUM ENGINEERING    Engineering
@@ -26,7 +34,14 @@ For this data visualization, a dataset containing information about the gender d
 Data Cleaning (Visualization \#1)
 ---------------------------------
 
-To further analyze the gender distribution of different collge major categories, it was necessary to create a column containing the proportion of men in each major (ShareMen). In addition, the dataset was grouped by major category and the average proportion of men and women in each major category was calculated, creating the Total\_Men and Total\_Women columns, labled as "Female Students" and "Male Students". The final dataset used for the visualization contained only the Major\_Category, Total\_Women, and Total\_Men columns, as shown below.
+To further analyze the gender distribution of different collge major
+categories, it was necessary to create a column containing the
+proportion of men in each major (ShareMen). In addition, the dataset was
+grouped by major category and the average proportion of men and women in
+each major category was calculated, creating the Total\_Men and
+Total\_Women columns, labled as "Female Students" and "Male Students".
+The final dataset used for the visualization contained only the
+Major\_Category, Total\_Women, and Total\_Men columns, as shown below.
 
     ## ── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
 
@@ -57,14 +72,23 @@ To further analyze the gender distribution of different collge major categories,
 Which Major Categories Have the Most Women?
 -------------------------------------------
 
-As shown below, women tend to dominate the health field while the the fields of engineering and computer science & mathematics are largely dominanted by male students.
+As shown below, women tend to dominate the health field while the the
+fields of engineering and computer science & mathematics are largely
+dominanted by male students.
 
-![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](FinalProject_STEM_files/figure-markdown_strict/unnamed-chunk-3-1.png)
 
 Data Cleaning (Visualization \#2)
 ---------------------------------
 
-Each of these major categories consists of many majors. To further examine which specific college majors are most popular amongst female students and male students, I subsetted the data to only contain the top 10 college majors with the highest proportion of female students as well as the top 10 college majors with the highest proportion of male students. These datasets (named mostwomen and mostmen) as well as their respective barplots showing the gender distributions for these majors are shown below.
+Each of these major categories consists of many majors. To further
+examine which specific college majors are most popular amongst female
+students and male students, I subsetted the data to only contain the top
+10 college majors with the highest proportion of female students as well
+as the top 10 college majors with the highest proportion of male
+students. These datasets (named mostwomen and mostmen) as well as their
+respective barplots showing the gender distributions for these majors
+are shown below.
 
     ##                                                         Major
     ## 1                                                     NURSING
@@ -112,11 +136,21 @@ Each of these major categories consists of many majors. To further examine which
     ## 9       82.10181
     ## 10      92.25470
 
-![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](FinalProject_STEM_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
-![](FinalProject_STEM_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](FinalProject_STEM_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
 Women in STEM: Conclusion
 -------------------------
 
-There has been a large societal push in recent years to encourage and promote Women in STEM (Science, Technology, Engineering, and Mathematics), as research has found many barriers can impede women's progress in STEM. This includes gender stereotypes and the overall environment of science and engineering departments in colleges and universities. As indicated by the plots above, women make up a large proportion of students in scientific fields related to health and medicine. However, there is still more to be done to increase women participation in the fields of engineering, mathematics, and computer science, as these fields appear dominated by males according to this data.
+There has been a large societal push in recent years to encourage and
+promote Women in STEM (Science, Technology, Engineering, and
+Mathematics), as research has found many barriers can impede women's
+progress in STEM. This includes gender stereotypes and the overall
+environment of science and engineering departments in colleges and
+universities. As indicated by the plots above, women make up a large
+proportion of students in scientific fields related to health and
+medicine. However, there is still more to be done to increase women
+participation in the fields of engineering, mathematics, and computer
+science, as these fields appear dominated by males according to this
+data.

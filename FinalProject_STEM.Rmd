@@ -3,7 +3,9 @@ title: "BIOS 512 Data Visualization- Women In STEM"
 author: "Liz Zarzar"
 date: "11/20/2019"
 output:
-  github_document
+    md_document:
+    variant: markdown_github
+
 ---
 
 ```{r setup, include=FALSE}
